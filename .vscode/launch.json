@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-Application<idms-web>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.turtleby.idms.web.Application",
+      "projectName": "idms-web",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

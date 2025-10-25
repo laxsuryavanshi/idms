@@ -1,0 +1,18 @@
+{
+  "files.insertFinalNewline": true,
+  "java.configuration.updateBuildConfiguration": "disabled",
+  "java.compile.nullAnalysis.mode": "disabled",
+  "java.completion.importOrder": [
+    "#",
+    "java",
+    "javax",
+    "jakarta",
+    "org",
+    "com",
+    "",
+    "com.turtleby"
+  ],
+  "[java]": {
+    "editor.formatOnSave": false
+  }
+}

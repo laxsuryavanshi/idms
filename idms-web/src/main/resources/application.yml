@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: idms-web
+
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+
+  main:
+    banner-mode: off
+
+  threads:
+    virtual:
+      enabled: true
