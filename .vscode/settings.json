@@ -1,6 +1,7 @@
 {
+  "editor.formatOnSave": false,
+  "editor.rulers": [100],
   "files.insertFinalNewline": true,
-  "java.configuration.updateBuildConfiguration": "disabled",
   "java.compile.nullAnalysis.mode": "disabled",
   "java.completion.importOrder": [
     "#",
@@ -12,7 +13,8 @@
     "",
     "com.turtleby"
   ],
-  "[java]": {
-    "editor.formatOnSave": false
-  }
+  "java.configuration.updateBuildConfiguration": "disabled",
+  "java.inlayHints.parameterNames.enabled": "none",
+  "java.sources.organizeImports.starThreshold": 4,
+  "java.sources.organizeImports.staticStarThreshold": 4
 }
