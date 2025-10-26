@@ -1,5 +1,5 @@
 {
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "editor.rulers": [100],
   "files.insertFinalNewline": true,
   "java.compile.nullAnalysis.mode": "disabled",
@@ -16,5 +16,8 @@
   "java.configuration.updateBuildConfiguration": "disabled",
   "java.inlayHints.parameterNames.enabled": "none",
   "java.sources.organizeImports.starThreshold": 4,
-  "java.sources.organizeImports.staticStarThreshold": 4
+  "java.sources.organizeImports.staticStarThreshold": 4,
+  "[java]": {
+    "editor.formatOnSave": false
+  }
 }
