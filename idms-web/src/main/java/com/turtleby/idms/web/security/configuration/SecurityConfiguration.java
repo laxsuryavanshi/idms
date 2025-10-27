@@ -20,6 +20,7 @@ public class SecurityConfiguration {
   public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
     return http.authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated())
         .formLogin(Customizer.withDefaults())
+        .oauth2Login(Customizer.withDefaults())
         .build();
   }
 
