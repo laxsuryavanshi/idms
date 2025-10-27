@@ -7,6 +7,10 @@ spring:
     username: ${DATABASE_USERNAME}
     password: ${DATABASE_PASSWORD}
 
+  data:
+    redis:
+      url: ${REDIS_URL}
+
   main:
     banner-mode: off
 
@@ -20,6 +24,10 @@ spring:
           google:
             client-id: ${GOOGLE_OAUTH2_CLIENT_ID}
             client-secret: ${GOOGLE_OAUTH2_CLIENT_SECRET}
+
+  session:
+    redis:
+      repository-type: indexed
 
   threads:
     virtual:
