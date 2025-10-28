@@ -9,7 +9,7 @@ spring:
 
   data:
     redis:
-      url: ${REDIS_URL}
+      url: ${REDIS_URL:}
 
   main:
     banner-mode: off
