@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.test.context.jdbc.Sql;
 
 import com.turtleby.idms.web.TestcontainersConfiguration;
 import com.turtleby.idms.web.core.dao.JdbcUserDataManager;
@@ -20,7 +19,6 @@ import com.turtleby.idms.web.core.dao.UserDataManager;
 
 @Import(TestcontainersConfiguration.class)
 @DataJdbcTest
-@Sql(scripts = "/sql/users.sql")
 @DisplayName("UserDetailsManager Integration Tests")
 class UserDetailsManagerITests {
   @Autowired private JdbcTemplate jdbcTemplate;

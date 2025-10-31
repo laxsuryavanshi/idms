@@ -13,14 +13,12 @@ import org.springframework.context.annotation.Import;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.test.context.jdbc.Sql;
 
 import com.turtleby.idms.web.TestcontainersConfiguration;
 import com.turtleby.idms.web.core.entity.User;
 
 @Import(TestcontainersConfiguration.class)
 @DataJdbcTest
-@Sql(scripts = "/sql/users.sql")
 @DisplayName("JdbcUserDataManager Integration Tests")
 class JdbcUserDataManagerITests {
   @Autowired private JdbcTemplate jdbcTemplate;
