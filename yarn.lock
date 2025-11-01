@@ -419,6 +419,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource/barlow@npm:^5.2.8":
+  version: 5.2.8
+  resolution: "@fontsource/barlow@npm:5.2.8"
+  checksum: 10c0/be473a21c959324964c160e1120085e4d330ba39cdb27f18ff18943a99f9f2f4fe9d4524caadd0b1978bd6379c0c3b66f7881e089edce24fb4fa6292414d1ba5
+  languageName: node
+  linkType: hard
+
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -855,6 +862,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@turtleby/idms-ui@workspace:."
   dependencies:
+    "@fontsource/barlow": "npm:^5.2.8"
     "@tailwindcss/vite": "npm:^4.1.16"
     "@types/node": "npm:^24.9.1"
     "@types/react": "npm:^19.2.2"
