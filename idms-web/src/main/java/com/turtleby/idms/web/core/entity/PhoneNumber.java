@@ -6,8 +6,9 @@ import java.io.Serializable;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("users")
-public record User(@Id String id, String username, String password, boolean isActive)
+@Table("user_phone_number")
+public record PhoneNumber(
+    @Id String id, String userId, String phoneNumber, boolean isPrimary, boolean isVerified)
     implements Serializable {
   @Serial private static final long serialVersionUID = 1L;
 }
