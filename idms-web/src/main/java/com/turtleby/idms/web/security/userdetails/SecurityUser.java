@@ -1,5 +1,6 @@
 package com.turtleby.idms.web.security.userdetails;
 
+import java.io.Serial;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -9,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.turtleby.idms.web.core.entity.User;
 
 public class SecurityUser implements UserDetails {
+  @Serial private static final long serialVersionUID = 1L;
+
   private final User user;
 
   public SecurityUser(final User user) {
