@@ -1,0 +1,14 @@
+services:
+  idms:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sleep infinity
+    volumes:
+      - ../..:/workspaces:cached
+    networks:
+      - snowflake-infra_snowflake-network
+
+networks:
+  snowflake-infra_snowflake-network:
+    external: true

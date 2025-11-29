@@ -1,0 +1,10 @@
+{
+  "name": "Turtelby IDMS",
+  "dockerComposeFile": "compose.yml",
+  "service": "idms",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {}
+  },
+  "forwardPorts": [8080]
+}
