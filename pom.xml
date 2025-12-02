@@ -26,5 +26,6 @@
   <modules>
     <module>shared-dependencies</module>
     <module>idms-web</module>
+    <module>idms-multitenancy</module>
   </modules>
 </project>
