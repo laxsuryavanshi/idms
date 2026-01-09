@@ -1,5 +1,6 @@
 package com.turtleby.idms.web.security.configuration;
 
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -15,12 +16,16 @@ import org.springframework.security.oauth2.server.authorization.client.Registere
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configurers.OAuth2AuthorizationServerConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.NoOpAuthenticationEntryPoint;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.turtleby.idms.web.core.dao.UserDataManager;
 import com.turtleby.idms.web.security.userdetails.UserDetailsManager;
 
 @Configuration(proxyBeanMethods = false)
 @EnableWebSecurity
+@EnableConfigurationProperties({CorsConfigurationProperties.class})
 public class SecurityConfiguration {
   @Bean
   @Order(1)
@@ -41,9 +46,30 @@ public class SecurityConfiguration {
   @Order(2)
   public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
     return http.authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated())
+        .cors(Customizer.withDefaults())
         .formLogin(Customizer.withDefaults())
         .oauth2Login(Customizer.withDefaults())
         .build();
+  }
+
+  @Bean
+  public CorsConfigurationSource corsConfigurationSource(
+      final CorsConfigurationProperties corsProperties) {
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+
+    for (CorsConfigurationProperties.CorsRule rule : corsProperties.rules()) {
+      CorsConfiguration configuration = new CorsConfiguration();
+      configuration.setAllowedOrigins(rule.origins());
+      configuration.setAllowedMethods(rule.allowedMethods());
+      configuration.setAllowedHeaders(rule.allowedHeaders());
+      configuration.setExposedHeaders(rule.exposedHeaders());
+      configuration.setAllowCredentials(rule.allowCredentials());
+      configuration.setMaxAge(rule.maxAge());
+
+      source.registerCorsConfiguration(rule.pathPattern(), configuration);
+    }
+
+    return source;
   }
 
   @Bean
