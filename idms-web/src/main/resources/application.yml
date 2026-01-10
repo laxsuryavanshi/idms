@@ -2,6 +2,9 @@ spring:
   application:
     name: idms-web
 
+  config:
+    import: optional:classpath:application-secrets.yml
+
   datasource:
     url: ${DATABASE_URL}
     username: ${DATABASE_USERNAME}

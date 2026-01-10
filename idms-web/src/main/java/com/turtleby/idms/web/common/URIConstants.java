@@ -9,5 +9,8 @@ public final class URIConstants {
   public static final String TENANTS_RESOURCE_URI_SUFFIX = "/{tenantId}";
   public static final String TENANTS_URI_FORMAT = TENANTS_RESOURCE_URI + "/%s";
 
+  public static final String LOGIN_URI = "/login";
+  public static final String ERROR_URI = "/error";
+
   private URIConstants() {}
 }

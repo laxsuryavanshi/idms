@@ -34,3 +34,5 @@ buildNumber.properties
 # .pnp.*
 node_modules/
 dist/
+
+application-secrets.yml

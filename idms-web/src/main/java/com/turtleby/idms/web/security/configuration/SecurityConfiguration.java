@@ -1,23 +1,19 @@
 package com.turtleby.idms.web.security.configuration;
 
+import static com.turtleby.idms.web.common.URIConstants.ERROR_URI;
+import static com.turtleby.idms.web.common.URIConstants.LOGIN_URI;
+
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpStatus;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.server.authorization.client.JdbcRegisteredClientRepository;
-import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
-import org.springframework.security.oauth2.server.authorization.config.annotation.web.configurers.OAuth2AuthorizationServerConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.HttpStatusEntryPoint;
-import org.springframework.security.web.authentication.NoOpAuthenticationEntryPoint;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -30,29 +26,15 @@ import com.turtleby.idms.web.security.userdetails.UserDetailsManager;
 @EnableConfigurationProperties({CorsConfigurationProperties.class})
 public class SecurityConfiguration {
   @Bean
-  @Order(1)
-  public SecurityFilterChain authorizationServerSecurityFilterChain(final HttpSecurity http)
-      throws Exception {
-    OAuth2AuthorizationServerConfigurer configurer =
-        OAuth2AuthorizationServerConfigurer.authorizationServer();
-
-    return http.securityMatcher(configurer.getEndpointsMatcher())
-        .with(configurer, (server) -> server.oidc(Customizer.withDefaults()))
-        .authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated())
-        .exceptionHandling(
-            exceptions -> exceptions.authenticationEntryPoint(new NoOpAuthenticationEntryPoint()))
-        .build();
-  }
-
-  @Bean
-  @Order(2)
+  @Order(SecurityOrder.DEFAULT)
   public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
-    return http.authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated())
-        .exceptionHandling(
-            exceptions ->
-                exceptions.authenticationEntryPoint(
-                    new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
-        .cors(Customizer.withDefaults())
+    return http.authorizeHttpRequests(
+            authorize ->
+                authorize
+                    .requestMatchers(LOGIN_URI, ERROR_URI)
+                    .permitAll()
+                    .anyRequest()
+                    .authenticated())
         .formLogin(Customizer.withDefaults())
         .oauth2Login(Customizer.withDefaults())
         .build();
@@ -86,10 +68,5 @@ public class SecurityConfiguration {
   @Bean
   public PasswordEncoder passwordEncoder() {
     return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-  }
-
-  @Bean
-  public RegisteredClientRepository registeredClientRepository(final JdbcTemplate jdbcTemplate) {
-    return new JdbcRegisteredClientRepository(jdbcTemplate);
   }
 }
