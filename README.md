@@ -6,6 +6,20 @@ A multi-tenant identity management system built with Spring Boot and React, feat
 
 IDMS (Identity Management System) provides a complete OAuth2/OpenID Connect authorization server implementation with multi-tenant support, enabling secure identity management across isolated tenant environments.
 
+## 📊 Test Coverage
+
+The backend codebase maintains comprehensive test coverage:
+
+| Metric       | Coverage  | Covered | Missed | Total |
+| ------------ | --------- | ------- | ------ | ----- |
+| **Lines**    | **87.1%** | 203     | 30     | 233   |
+| **Classes**  | **84.4%** | 27      | 5      | 32    |
+| **Methods**  | **89.7%** | 87      | 10     | 97    |
+| **Branches** | **31.8%** | 7       | 15     | 22    |
+| Instructions | 77.4%     | 893     | 261    | 1,154 |
+
+_Coverage reports are generated using JaCoCo and can be found in `idms-web/target/site/jacoco/`._
+
 ## ✨ Key Features
 
 ### 🔐 Authentication & Authorization
