@@ -1,4 +1,4 @@
-package com.turtleby.idms.web.core.entity;
+package com.turtleby.idms.web.user.entity;
 
 import java.io.Serial;
 import java.io.Serializable;

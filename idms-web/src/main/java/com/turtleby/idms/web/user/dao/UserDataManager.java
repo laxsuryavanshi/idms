@@ -1,6 +1,6 @@
-package com.turtleby.idms.web.core.dao;
+package com.turtleby.idms.web.user.dao;
 
-import com.turtleby.idms.web.core.entity.User;
+import com.turtleby.idms.web.user.entity.User;
 
 /**
  * Data access interface for managing user-related database operations.

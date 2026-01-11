@@ -4,8 +4,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.turtleby.idms.web.core.dao.UserDataManager;
-import com.turtleby.idms.web.core.entity.User;
+import com.turtleby.idms.web.user.dao.UserDataManager;
+import com.turtleby.idms.web.user.entity.User;
 
 public class UserDetailsManager implements UserDetailsService {
   private final UserDataManager userDataManager;

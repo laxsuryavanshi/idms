@@ -1,4 +1,4 @@
-package com.turtleby.idms.web.core.dao;
+package com.turtleby.idms.web.user.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.turtleby.idms.web.core.entity.User;
+import com.turtleby.idms.web.user.entity.User;
 
 /**
  * JDBC-based implementation of {@link UserDataManager} for managing user data operations.

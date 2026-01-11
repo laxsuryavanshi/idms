@@ -3,10 +3,10 @@ package com.turtleby.idms.web.tenant.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.turtleby.idms.web.core.entity.User;
 import com.turtleby.idms.web.tenant.dto.TenantCreateRequest;
 import com.turtleby.idms.web.tenant.dto.TenantResponse;
 import com.turtleby.idms.web.tenant.dto.TenantUpdateRequest;
+import com.turtleby.idms.web.user.entity.User;
 
 public interface TenantManager {
   Long createTenant(final TenantCreateRequest request, User user);

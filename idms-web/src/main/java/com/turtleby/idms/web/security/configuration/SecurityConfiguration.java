@@ -18,8 +18,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import com.turtleby.idms.web.core.dao.UserDataManager;
 import com.turtleby.idms.web.security.userdetails.UserDetailsManager;
+import com.turtleby.idms.web.user.dao.UserDataManager;
 
 @Configuration(proxyBeanMethods = false)
 @EnableWebSecurity

@@ -14,8 +14,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.turtleby.idms.web.TestcontainersConfiguration;
-import com.turtleby.idms.web.core.dao.JdbcUserDataManager;
-import com.turtleby.idms.web.core.dao.UserDataManager;
+import com.turtleby.idms.web.user.dao.JdbcUserDataManager;
+import com.turtleby.idms.web.user.dao.UserDataManager;
 
 @Import(TestcontainersConfiguration.class)
 @DataJdbcTest

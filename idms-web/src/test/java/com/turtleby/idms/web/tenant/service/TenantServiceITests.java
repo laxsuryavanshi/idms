@@ -16,7 +16,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.turtleby.idms.web.TestcontainersConfiguration;
 import com.turtleby.idms.web.common.exception.EntityNotFoundException;
-import com.turtleby.idms.web.core.entity.User;
 import com.turtleby.idms.web.tenant.dao.TenantRepository;
 import com.turtleby.idms.web.tenant.dto.TenantCreateRequest;
 import com.turtleby.idms.web.tenant.dto.TenantResponse;
@@ -24,6 +23,7 @@ import com.turtleby.idms.web.tenant.dto.TenantUpdateRequest;
 import com.turtleby.idms.web.tenant.entity.Tenant;
 import com.turtleby.idms.web.tenant.entity.TenantStatus;
 import com.turtleby.idms.web.tenant.entity.TenantType;
+import com.turtleby.idms.web.user.entity.User;
 
 @Import(TestcontainersConfiguration.class)
 @DataJdbcTest

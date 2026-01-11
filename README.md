@@ -65,7 +65,7 @@ idms/
 │   │   └── com/turtleby/idms/web/
 │   │       ├── security/     # Security configurations
 │   │       ├── tenant/       # Tenant management
-│   │       └── core/         # Core business logic
+│   │       └── user/         # User management logic
 │   └── src/main/resources/
 │       ├── application.yml   # Application configuration
 │       └── db/migration/     # Flyway database migrations

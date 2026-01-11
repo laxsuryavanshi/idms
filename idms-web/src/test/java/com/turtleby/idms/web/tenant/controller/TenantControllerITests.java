@@ -21,10 +21,10 @@ import org.springframework.test.web.servlet.MvcResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.turtleby.idms.web.TestcontainersConfiguration;
-import com.turtleby.idms.web.core.entity.User;
 import com.turtleby.idms.web.security.userdetails.SecurityUser;
 import com.turtleby.idms.web.tenant.dto.TenantCreateRequest;
 import com.turtleby.idms.web.tenant.dto.TenantUpdateRequest;
+import com.turtleby.idms.web.user.entity.User;
 
 @SpringBootTest
 @AutoConfigureMockMvc

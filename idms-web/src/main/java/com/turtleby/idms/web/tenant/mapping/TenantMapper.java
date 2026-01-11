@@ -5,13 +5,13 @@ import java.time.Instant;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-import com.turtleby.idms.web.core.entity.User;
 import com.turtleby.idms.web.tenant.dto.TenantCreateRequest;
 import com.turtleby.idms.web.tenant.dto.TenantResponse;
 import com.turtleby.idms.web.tenant.dto.TenantUpdateRequest;
 import com.turtleby.idms.web.tenant.entity.Tenant;
 import com.turtleby.idms.web.tenant.entity.TenantStatus;
 import com.turtleby.idms.web.tenant.entity.TenantType;
+import com.turtleby.idms.web.user.entity.User;
 
 @Mapper
 public interface TenantMapper {

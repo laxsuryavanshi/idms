@@ -7,7 +7,7 @@ import java.util.Collections;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.turtleby.idms.web.core.entity.User;
+import com.turtleby.idms.web.user.entity.User;
 
 public class SecurityUser implements UserDetails {
   @Serial private static final long serialVersionUID = 1L;

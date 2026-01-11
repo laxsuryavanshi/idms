@@ -1,4 +1,4 @@
-package com.turtleby.idms.web.core.dao;
+package com.turtleby.idms.web.user.dao;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -15,7 +15,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.turtleby.idms.web.TestcontainersConfiguration;
-import com.turtleby.idms.web.core.entity.User;
+import com.turtleby.idms.web.user.entity.User;
 
 @Import(TestcontainersConfiguration.class)
 @DataJdbcTest

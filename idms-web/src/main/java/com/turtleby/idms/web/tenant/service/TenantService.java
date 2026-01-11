@@ -7,13 +7,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.turtleby.idms.web.common.exception.EntityNotFoundException;
-import com.turtleby.idms.web.core.entity.User;
 import com.turtleby.idms.web.tenant.dao.TenantRepository;
 import com.turtleby.idms.web.tenant.dto.TenantCreateRequest;
 import com.turtleby.idms.web.tenant.dto.TenantResponse;
 import com.turtleby.idms.web.tenant.dto.TenantUpdateRequest;
 import com.turtleby.idms.web.tenant.entity.Tenant;
 import com.turtleby.idms.web.tenant.mapping.TenantMapper;
+import com.turtleby.idms.web.user.entity.User;
 
 public class TenantService implements TenantManager {
   private static final Logger LOGGER = LoggerFactory.getLogger(TenantService.class);
