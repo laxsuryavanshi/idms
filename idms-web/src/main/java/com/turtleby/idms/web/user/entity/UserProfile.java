@@ -8,6 +8,9 @@ import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+import lombok.Builder;
+
+@Builder
 @Table("user_profile")
 public record UserProfile(
     @Id String id,

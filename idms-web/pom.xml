@@ -108,6 +108,11 @@
       <artifactId>mapstruct</artifactId>
       <version>${org.mapstruct.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
 
     <!-- Test Dependencies -->
     <dependency>
@@ -148,6 +153,10 @@
           <parameters>true</parameters>
           <annotationProcessorPaths>
             <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </path>
+            <path>
               <groupId>org.mapstruct</groupId>
               <artifactId>mapstruct-processor</artifactId>
               <version>${org.mapstruct.version}</version>
@@ -162,6 +171,14 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </exclude>
+          </excludes>
+        </configuration>
       </plugin>
     </plugins>
   </build>

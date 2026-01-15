@@ -6,6 +6,9 @@ import java.io.Serializable;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+import lombok.Builder;
+
+@Builder
 @Table("user_phone_number")
 public record PhoneNumber(
     @Id String id, String userId, String phoneNumber, boolean isPrimary, boolean isVerified)
