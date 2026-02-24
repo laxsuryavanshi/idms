@@ -1,6 +1,6 @@
 # IDMS - Identity Management System
 
-A multi-tenant identity management system built with Spring Boot and React, featuring OAuth2 authorization server capabilities, PostgreSQL schema-based multitenancy, and comprehensive user management.
+A multi-tenant identity management system built with Spring Boot, featuring OAuth2 authorization server capabilities, PostgreSQL schema-based multitenancy, and comprehensive user management.
 
 ## 🌟 Overview
 
@@ -46,14 +46,6 @@ _Coverage reports are generated using JaCoCo and can be found in `idms-web/targe
 - **Virtual Threads** support (Java 21)
 - **Observability** with Prometheus metrics
 
-### 🎨 Frontend
-
-- **React 19** with TypeScript
-- **Vite** for blazing-fast development
-- **Chakra UI** for accessible component library
-- **TailwindCSS** for utility-first styling
-- **React Router 7** for navigation
-
 ## 📁 Project Structure
 
 This is a monorepo containing multiple modules:
@@ -73,13 +65,6 @@ idms/
 ├── idms-multitenancy/        # Multitenancy library
 │   └── src/main/java/        # Schema-based multitenancy implementation
 │
-├── idms-ui/                  # React frontend application
-│   ├── src/
-│   │   ├── routes/          # Route components
-│   │   ├── App.tsx          # Main application component
-│   │   └── router.tsx       # Route configuration
-│   └── public/              # Static assets
-│
 └── shared-dependencies/      # Shared Maven dependencies
 ```
 
@@ -88,8 +73,6 @@ idms/
 ### Prerequisites
 
 - **Java 21** or higher
-- **Node.js 22.12** or higher
-- **Yarn 4.10.3** (or use the included package manager)
 - **PostgreSQL 14** or higher
 - **Redis 7** or higher
 - **Maven 3.9+** (or use the included Maven wrapper)
@@ -155,19 +138,6 @@ idms/
 ./mvnw spotless:apply
 ```
 
-#### Frontend (React/TypeScript)
-
-```bash
-# Install dependencies
-yarn install
-
-# Run development server
-yarn dev
-
-# Build for production
-yarn build
-```
-
 ### Running the Application
 
 #### Start the Backend
@@ -188,15 +158,6 @@ REDIS_URL=redis://localhost:6379 \
 ```
 
 The backend will start on `http://localhost:8080`
-
-#### Start the Frontend
-
-```bash
-# From the root directory
-yarn dev
-```
-
-The frontend will start on `http://localhost:5173`
 
 ## 🔑 Core Concepts
 
@@ -244,11 +205,9 @@ The application uses a multi-layered security approach:
 The project uses several tools to maintain code quality:
 
 - **Checkstyle** - Java code style enforcement
-- **Spotless** - Code formatting (Java & Frontend)
+- **Spotless** - Java code formatting
 - **Maven Enforcer** - Dependency convergence
 - **JaCoCo** - Code coverage reporting
-- **ESLint** - JavaScript/TypeScript linting
-- **Prettier** - Frontend code formatting
 
 ```bash
 # Check code style
@@ -319,19 +278,9 @@ OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://localhost:4318/v1/traces
 - Flyway
 - Micrometer + OpenTelemetry
 
-**Frontend:**
-
-- React 19
-- TypeScript 5.9+
-- Vite 7
-- Chakra UI 3.30+
-- TailwindCSS 4
-- React Router 7
-
 **Build Tools:**
 
 - Maven 3.9+
-- Yarn 4.10+
 
 ### Design Patterns
 
@@ -357,7 +306,6 @@ Contributions are welcome! Please follow these guidelines:
 ### Code Style
 
 - Java: Follow Google Java Style Guide (enforced by Checkstyle)
-- TypeScript/React: Use Prettier formatting
 - Commit messages: Use conventional commit format
 
 ## 👤 Author
@@ -370,7 +318,6 @@ Contributions are welcome! Please follow these guidelines:
 
 - Spring Security Team for OAuth2 implementation guidance
 - PostgreSQL Community for schema-based multitenancy patterns
-- React and Vite communities for modern frontend tooling
 
 ## 📞 Support
 
@@ -381,4 +328,4 @@ For issues, questions, or contributions:
 
 ---
 
-**Built with ❤️ using Spring Boot and React**
+**Built with ❤️ using Spring Boot**
