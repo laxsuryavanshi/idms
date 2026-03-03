@@ -11,7 +11,7 @@ import lombok.Builder;
 @Builder
 @Table("user_email_address")
 public record EmailAddress(
-    @Id String id, String userId, String email, boolean isPrimary, boolean isVerified)
+    @Id Long id, String userId, String email, boolean isPrimary, boolean isVerified)
     implements Serializable {
   @Serial private static final long serialVersionUID = 1L;
 }

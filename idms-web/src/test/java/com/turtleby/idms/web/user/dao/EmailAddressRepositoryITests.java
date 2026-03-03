@@ -40,7 +40,7 @@ class EmailAddressRepositoryITests {
       final String email = "john.doe@example.com";
 
       insertUser(userId, username, password, true);
-      insertEmailAddress(UUID.randomUUID().toString(), userId, email, true, true);
+      insertEmailAddress(userId, email, true, true);
 
       // When
       final Optional<User> result = emailAddressRepository.findUserByEmail(email);
@@ -63,11 +63,11 @@ class EmailAddressRepositoryITests {
 
       // User 1 has the email as non-primary
       insertUser(user1Id, "user1", "{bcrypt}$2a$10$hash1", true);
-      insertEmailAddress(UUID.randomUUID().toString(), user1Id, sharedEmail, false, true);
+      insertEmailAddress(user1Id, sharedEmail, false, true);
 
       // User 2 has the email as primary
       insertUser(user2Id, "user2", "{bcrypt}$2a$10$hash2", true);
-      insertEmailAddress(UUID.randomUUID().toString(), user2Id, sharedEmail, true, true);
+      insertEmailAddress(user2Id, sharedEmail, true, true);
 
       // When
       final Optional<User> result = emailAddressRepository.findUserByEmail(sharedEmail);
@@ -92,10 +92,10 @@ class EmailAddressRepositoryITests {
 
       // Both users have the email as non-primary (same priority)
       insertUser(user1Id, "zebra", "{bcrypt}$2a$10$hash1", true);
-      insertEmailAddress(UUID.randomUUID().toString(), user1Id, sharedEmail, false, true);
+      insertEmailAddress(user1Id, sharedEmail, false, true);
 
       insertUser(user2Id, "alpha", "{bcrypt}$2a$10$hash2", true);
-      insertEmailAddress(UUID.randomUUID().toString(), user2Id, sharedEmail, false, true);
+      insertEmailAddress(user2Id, sharedEmail, false, true);
 
       // When
       final Optional<User> result = emailAddressRepository.findUserByEmail(sharedEmail);
@@ -115,7 +115,7 @@ class EmailAddressRepositoryITests {
       final String email = "user+tag@example.com";
 
       insertUser(userId, "special.user", "{bcrypt}$2a$10$hash", true);
-      insertEmailAddress(UUID.randomUUID().toString(), userId, email, true, true);
+      insertEmailAddress(userId, email, true, true);
 
       // When
       final Optional<User> result = emailAddressRepository.findUserByEmail(email);
@@ -133,7 +133,7 @@ class EmailAddressRepositoryITests {
       final String email = "inactive@example.com";
 
       insertUser(userId, "inactive.user", "{bcrypt}$2a$10$hash", false);
-      insertEmailAddress(UUID.randomUUID().toString(), userId, email, true, true);
+      insertEmailAddress(userId, email, true, true);
 
       // When
       final Optional<User> result = emailAddressRepository.findUserByEmail(email);
@@ -151,7 +151,7 @@ class EmailAddressRepositoryITests {
       final String email = "unverified@example.com";
 
       insertUser(userId, "unverified.user", "{bcrypt}$2a$10$hash", true);
-      insertEmailAddress(UUID.randomUUID().toString(), userId, email, true, false);
+      insertEmailAddress(userId, email, true, false);
 
       // When
       final Optional<User> result = emailAddressRepository.findUserByEmail(email);
@@ -199,7 +199,7 @@ class EmailAddressRepositoryITests {
       final String email = "user@example.com";
 
       insertUser(userId, "case.user", "{bcrypt}$2a$10$hash", true);
-      insertEmailAddress(UUID.randomUUID().toString(), userId, email, true, true);
+      insertEmailAddress(userId, email, true, true);
 
       // When
       final Optional<User> result = emailAddressRepository.findUserByEmail("USER@EXAMPLE.COM");
@@ -222,13 +222,13 @@ class EmailAddressRepositoryITests {
       final String sharedEmail = "shared@example.com";
 
       insertUser(user1Id, "user1", "{bcrypt}$2a$10$hash1", true);
-      insertEmailAddress(UUID.randomUUID().toString(), user1Id, sharedEmail, false, true);
+      insertEmailAddress(user1Id, sharedEmail, false, true);
 
       insertUser(user2Id, "user2", "{bcrypt}$2a$10$hash2", true);
-      insertEmailAddress(UUID.randomUUID().toString(), user2Id, sharedEmail, false, true);
+      insertEmailAddress(user2Id, sharedEmail, false, true);
 
       insertUser(user3Id, "user3", "{bcrypt}$2a$10$hash3", true);
-      insertEmailAddress(UUID.randomUUID().toString(), user3Id, sharedEmail, false, true);
+      insertEmailAddress(user3Id, sharedEmail, false, true);
 
       // When
       final Optional<User> result = emailAddressRepository.findUserByEmail(sharedEmail);
@@ -246,14 +246,10 @@ class EmailAddressRepositoryITests {
   }
 
   private void insertEmailAddress(
-      final String id,
-      final String userId,
-      final String email,
-      final boolean isPrimary,
-      final boolean isVerified) {
+      final String userId, final String email, final boolean isPrimary, final boolean isVerified) {
     final String sql =
-        "insert into user_email_address (id, user_id, email, is_primary, is_verified)"
-            + " values (?, ?, ?, ?, ?)";
-    jdbcTemplate.update(sql, id, userId, email, isPrimary, isVerified);
+        "insert into user_email_address (user_id, email, is_primary, is_verified)"
+            + " values (?, ?, ?, ?)";
+    jdbcTemplate.update(sql, userId, email, isPrimary, isVerified);
   }
 }

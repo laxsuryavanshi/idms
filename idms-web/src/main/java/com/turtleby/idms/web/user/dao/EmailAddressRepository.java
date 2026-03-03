@@ -11,8 +11,7 @@ import com.turtleby.idms.web.user.entity.EmailAddress;
 import com.turtleby.idms.web.user.entity.User;
 
 public interface EmailAddressRepository
-    extends ListCrudRepository<EmailAddress, String>,
-        PagingAndSortingRepository<EmailAddress, String> {
+    extends ListCrudRepository<EmailAddress, Long>, PagingAndSortingRepository<EmailAddress, Long> {
   /**
    * Finds all email addresses associated with a specific user.
    *
@@ -28,6 +27,8 @@ public interface EmailAddressRepository
    * @return list of matching email addresses
    */
   List<EmailAddress> findByEmail(String email);
+
+  boolean existsByEmail(String email);
 
   @Query(
       "select u.id, u.username, u.password, u.is_active from users u "

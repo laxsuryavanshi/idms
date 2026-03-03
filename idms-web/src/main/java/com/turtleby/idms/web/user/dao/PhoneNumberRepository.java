@@ -11,8 +11,7 @@ import com.turtleby.idms.web.user.entity.PhoneNumber;
 import com.turtleby.idms.web.user.entity.User;
 
 public interface PhoneNumberRepository
-    extends ListCrudRepository<PhoneNumber, String>,
-        PagingAndSortingRepository<PhoneNumber, String> {
+    extends ListCrudRepository<PhoneNumber, Long>, PagingAndSortingRepository<PhoneNumber, Long> {
   /**
    * Finds all phone numbers associated with a specific user.
    *
@@ -28,6 +27,8 @@ public interface PhoneNumberRepository
    * @return list of matching phone numbers
    */
   List<PhoneNumber> findByPhoneNumber(String phoneNumber);
+
+  boolean existsByPhoneNumber(String phoneNumber);
 
   @Query(
       "select u.id, u.username, u.password, u.is_active from users u "

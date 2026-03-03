@@ -13,8 +13,7 @@ import lombok.Builder;
 @Builder
 @Table("user_profile")
 public record UserProfile(
-    @Id String id,
-    String sub,
+    @Id String sub,
     String name,
     String givenName,
     String familyName,

@@ -40,7 +40,7 @@ class PhoneNumberRepositoryITests {
       final String phoneNumber = "+1234567890";
 
       insertUser(userId, username, password, true);
-      insertPhoneNumber(UUID.randomUUID().toString(), userId, phoneNumber, true, true);
+      insertPhoneNumber(userId, phoneNumber, true, true);
 
       // When
       final Optional<User> result = phoneNumberRepository.findUserByPhoneNumber(phoneNumber);
@@ -63,11 +63,11 @@ class PhoneNumberRepositoryITests {
 
       // User 1 has the phone as non-primary
       insertUser(user1Id, "user1", "{bcrypt}$2a$10$hash1", true);
-      insertPhoneNumber(UUID.randomUUID().toString(), user1Id, sharedPhone, false, true);
+      insertPhoneNumber(user1Id, sharedPhone, false, true);
 
       // User 2 has the phone as primary
       insertUser(user2Id, "user2", "{bcrypt}$2a$10$hash2", true);
-      insertPhoneNumber(UUID.randomUUID().toString(), user2Id, sharedPhone, true, true);
+      insertPhoneNumber(user2Id, sharedPhone, true, true);
 
       // When
       final Optional<User> result = phoneNumberRepository.findUserByPhoneNumber(sharedPhone);
@@ -92,10 +92,10 @@ class PhoneNumberRepositoryITests {
 
       // Both users have the phone as non-primary (same priority)
       insertUser(user1Id, "zebra", "{bcrypt}$2a$10$hash1", true);
-      insertPhoneNumber(UUID.randomUUID().toString(), user1Id, sharedPhone, false, true);
+      insertPhoneNumber(user1Id, sharedPhone, false, true);
 
       insertUser(user2Id, "alpha", "{bcrypt}$2a$10$hash2", true);
-      insertPhoneNumber(UUID.randomUUID().toString(), user2Id, sharedPhone, false, true);
+      insertPhoneNumber(user2Id, sharedPhone, false, true);
 
       // When
       final Optional<User> result = phoneNumberRepository.findUserByPhoneNumber(sharedPhone);
@@ -115,7 +115,7 @@ class PhoneNumberRepositoryITests {
       final String phoneNumber = "+1-555-123-4567";
 
       insertUser(userId, "formatted.user", "{bcrypt}$2a$10$hash", true);
-      insertPhoneNumber(UUID.randomUUID().toString(), userId, phoneNumber, true, true);
+      insertPhoneNumber(userId, phoneNumber, true, true);
 
       // When
       final Optional<User> result = phoneNumberRepository.findUserByPhoneNumber(phoneNumber);
@@ -133,7 +133,7 @@ class PhoneNumberRepositoryITests {
       final String phoneNumber = "+9876543210";
 
       insertUser(userId, "inactive.user", "{bcrypt}$2a$10$hash", false);
-      insertPhoneNumber(UUID.randomUUID().toString(), userId, phoneNumber, true, true);
+      insertPhoneNumber(userId, phoneNumber, true, true);
 
       // When
       final Optional<User> result = phoneNumberRepository.findUserByPhoneNumber(phoneNumber);
@@ -151,7 +151,7 @@ class PhoneNumberRepositoryITests {
       final String phoneNumber = "+1111111111";
 
       insertUser(userId, "unverified.user", "{bcrypt}$2a$10$hash", true);
-      insertPhoneNumber(UUID.randomUUID().toString(), userId, phoneNumber, true, false);
+      insertPhoneNumber(userId, phoneNumber, true, false);
 
       // When
       final Optional<User> result = phoneNumberRepository.findUserByPhoneNumber(phoneNumber);
@@ -169,7 +169,7 @@ class PhoneNumberRepositoryITests {
       final String phoneNumber = "+44-7700-900123";
 
       insertUser(userId, "uk.user", "{bcrypt}$2a$10$hash", true);
-      insertPhoneNumber(UUID.randomUUID().toString(), userId, phoneNumber, true, true);
+      insertPhoneNumber(userId, phoneNumber, true, true);
 
       // When
       final Optional<User> result = phoneNumberRepository.findUserByPhoneNumber(phoneNumber);
@@ -215,7 +215,7 @@ class PhoneNumberRepositoryITests {
       final String phoneNumber = "+1234567890";
 
       insertUser(userId, "exact.user", "{bcrypt}$2a$10$hash", true);
-      insertPhoneNumber(UUID.randomUUID().toString(), userId, phoneNumber, true, true);
+      insertPhoneNumber(userId, phoneNumber, true, true);
 
       // When - trying with different format
       final Optional<User> result = phoneNumberRepository.findUserByPhoneNumber("1234567890");
@@ -238,13 +238,13 @@ class PhoneNumberRepositoryITests {
       final String sharedPhone = "+1234567890";
 
       insertUser(user1Id, "user1", "{bcrypt}$2a$10$hash1", true);
-      insertPhoneNumber(UUID.randomUUID().toString(), user1Id, sharedPhone, false, true);
+      insertPhoneNumber(user1Id, sharedPhone, false, true);
 
       insertUser(user2Id, "user2", "{bcrypt}$2a$10$hash2", true);
-      insertPhoneNumber(UUID.randomUUID().toString(), user2Id, sharedPhone, false, true);
+      insertPhoneNumber(user2Id, sharedPhone, false, true);
 
       insertUser(user3Id, "user3", "{bcrypt}$2a$10$hash3", true);
-      insertPhoneNumber(UUID.randomUUID().toString(), user3Id, sharedPhone, false, true);
+      insertPhoneNumber(user3Id, sharedPhone, false, true);
 
       // When
       final Optional<User> result = phoneNumberRepository.findUserByPhoneNumber(sharedPhone);
@@ -262,14 +262,13 @@ class PhoneNumberRepositoryITests {
   }
 
   private void insertPhoneNumber(
-      final String id,
       final String userId,
       final String phoneNumber,
       final boolean isPrimary,
       final boolean isVerified) {
     final String sql =
-        "insert into user_phone_number (id, user_id, phone_number, is_primary, is_verified)"
-            + " values (?, ?, ?, ?, ?)";
-    jdbcTemplate.update(sql, id, userId, phoneNumber, isPrimary, isVerified);
+        "insert into user_phone_number (user_id, phone_number, is_primary, is_verified)"
+            + " values (?, ?, ?, ?)";
+    jdbcTemplate.update(sql, userId, phoneNumber, isPrimary, isVerified);
   }
 }
