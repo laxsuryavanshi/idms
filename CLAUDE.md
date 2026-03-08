@@ -52,22 +52,12 @@ Integration tests use **Testcontainers** — no manual DB setup is needed for te
 
 ## Module Architecture
 
-Three Maven modules with `shared-dependencies` as the parent BOM:
+Two Maven modules with `shared-dependencies` as the parent BOM:
 
 ```
 shared-dependencies/    ← Parent POM: dependency management, plugin config
-idms-multitenancy/      ← Reusable multitenancy library (auto-configured)
 idms-web/               ← Spring Boot application
 ```
-
-### `idms-multitenancy` library
-
-Provides transparent schema-based multitenancy. Key components:
-
-- `TenantContextHolder` — thread-local tenant storage
-- `TenantResolver<T>` — strategy interface; default impl is `HttpHeaderTenantResolver` (reads `X-Tenant-ID` header)
-- `SchemaAwareDataSource` — wraps the real DataSource; sets `search_path` on borrow from pool, caches the current schema per connection to skip redundant `SET` commands
-- `TenantInterceptor` — Spring MVC interceptor that calls the resolver, populates context, clears it after the request
 
 ### `idms-web` package structure
 
@@ -96,13 +86,6 @@ Three Spring Security filter chains are layered (ordered):
 1. **OAuth2 Authorization Server** — handles `/oauth2/**` and `/.well-known/**`; issues JWT access tokens using keys from `src/main/resources/certs/`
 2. **API (stateless JWT)** — secures `/api/**` with Bearer token authentication; no session
 3. **Web (session-based)** — default chain for remaining routes; supports social login (GitHub, Google)
-
-## Multitenancy Flow
-
-1. Request arrives → `TenantInterceptor` calls `HttpHeaderTenantResolver` → reads `X-Tenant-ID` header
-2. Tenant stored in `TenantContextHolder` (thread-local)
-3. Any JDBC operation → `SchemaAwareDataSource` sets `SET search_path TO <tenant_schema>` on the connection
-4. After request completes → interceptor clears `TenantContextHolder`
 
 ## Database Migrations
 

@@ -48,7 +48,7 @@ _Coverage reports are generated using JaCoCo and can be found in `idms-web/targe
 
 ## 📁 Project Structure
 
-This is a monorepo containing multiple modules:
+This is a monorepo currently containing two modules:
 
 ```
 idms/
@@ -61,9 +61,6 @@ idms/
 │   └── src/main/resources/
 │       ├── application.yml   # Application configuration
 │       └── db/migration/     # Flyway database migrations
-│
-├── idms-multitenancy/        # Multitenancy library
-│   └── src/main/java/        # Schema-based multitenancy implementation
 │
 └── shared-dependencies/      # Shared Maven dependencies
 ```
